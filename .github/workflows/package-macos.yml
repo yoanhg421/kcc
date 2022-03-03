@@ -1,0 +1,32 @@
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: build KCC for mac os
+
+on:
+  push:
+    branches: [ pipeline_test ]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install flake8 pytest
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: build mac
+        run: |
+          python setup.py build_binary
+      - name: upload build
+        uses: actions/upload-artifact@v3
+        with:
+          name: mac-os-build
+          path: dist/
