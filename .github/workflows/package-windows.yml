@@ -4,9 +4,9 @@ name: build KCC for windows
 
 on:
   push:
-#    tags:
-#      - "v*.*.*"
-    branches: [ beta_release ]
+    tags:
+      - "v*.*.*"
+#    branches: [ beta_release ]
 
 jobs:
   build:
@@ -31,11 +31,11 @@ jobs:
         with:
           name: windows-build
           path: dist/*.exe
-#      - name: Release
-#        uses: softprops/action-gh-release@v1
-#        with:
-#          prerelease: true
-#          files: |
-#            CHANGELOG.md
-#            LICENSE.txt
-#            dist/*.exe
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          prerelease: true
+          files: |
+            CHANGELOG.md
+            LICENSE.txt
+            dist/*.exe
