@@ -8,3 +8,4 @@ dist/
 build/
 KindleComicConverter.egg-info/
 .idea/
+/venv/

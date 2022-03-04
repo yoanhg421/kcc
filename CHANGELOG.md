@@ -1,4 +1,10 @@
 # CHANGELOG
+
+#### 5.5.3-beta-darodi.2:
+* Add profile for Kindle PW5/Signature
+* Fixed the skipped/missed images and/or panels
+* Add profiles for the Kobo Clara HD and Libra H2O
+
 #### 5.5.2:
 * Fixed KindleGen detection on macOS 10.15
 * Fixed multiple smaller issues
