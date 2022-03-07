@@ -1,9 +1,12 @@
 # CHANGELOG
 
+#### 5.5.3-beta-darodi.3:
+* sync requirements between setup.py and requirements.txt, thanks @StudioEtrange
+
 #### 5.5.3-beta-darodi.2:
-* Add profile for Kindle PW5/Signature
-* Fixed the skipped/missed images and/or panels
-* Add profiles for the Kobo Clara HD and Libra H2O
+* Add profile for Kindle PW5/Signature, thanks @Einlar, @darodi
+* Fixed the skipped/missed images and/or panels, thanks @Fulya
+* Add profiles for the Kobo Clara HD and Libra H2O, thanks @Frédéric Brière
 
 #### 5.5.2:
 * Fixed KindleGen detection on macOS 10.15
