@@ -1,12 +1,12 @@
 # CHANGELOG
 
 #### 5.5.3-beta-darodi.3:
-* sync requirements between setup.py and requirements.txt, thanks @StudioEtrange
+* [sync requirements between setup.py and requirements.txt](https://github.com/ciromattia/kcc/pull/411), thanks [@StudioEtrange](https://github.com/StudioEtrange)
 
 #### 5.5.3-beta-darodi.2:
-* Add profile for Kindle PW5/Signature, thanks @Einlar, @darodi
-* Fixed the skipped/missed images and/or panels, thanks @Fulya
-* Add profiles for the Kobo Clara HD and Libra H2O, thanks @Frédéric Brière
+* [Add profile for Kindle PW5/Signature](https://github.com/ciromattia/kcc/pull/405), thanks [@Einlar](https://github.com/Einlar), [@darodi](https://github.com/darodi)
+* [Fixed the skipped/missed images and/or panels](https://github.com/ciromattia/kcc/pull/393), thanks [@FulyaDemirkan](https://github.com/FulyaDemirkan)
+* [Add profiles for the Kobo Clara HD and Libra H2O](https://github.com/ciromattia/kcc/pull/331), thanks [@fbriere](https://github.com/fbriere)
 
 #### 5.5.2:
 * Fixed KindleGen detection on macOS 10.15
