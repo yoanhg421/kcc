@@ -26,6 +26,10 @@ If you find **KCC** valuable you can consider donating to the authors:
   - [![Donate Bitcoin](https://img.shields.io/badge/Donate-Bitcoin-green.svg)](https://jastrzeb.ski/donate/)
 
 ## BINARY RELEASES
+You can find the latest beta binaries here:
+**https://github.com/darodi/kcc/releases**
+
+
 You can find the latest released binary at the following links:
 - **[Windows](http://kcc.iosphe.re/Windows/) (64-bit only)**
 - **[macOS](http://kcc.iosphe.re/OSX/) (10.14+)**
