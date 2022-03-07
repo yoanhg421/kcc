@@ -2,7 +2,7 @@
 
 #### 5.5.3-beta-darodi.4:
 * file selector add All `*.*` [ciromattia/kcc#412](https://github.com/ciromattia/kcc/pull/412), thanks [@StudioEtrange](https://github.com/StudioEtrange)
-* Clarify Pillow version requirement [ciromattia/kcc#366](https://github.com/ciromattia/kcc/pull/366), thanks [clach04](https://github.com/clach04)
+* Clarify Pillow version requirement [ciromattia/kcc#366](https://github.com/ciromattia/kcc/pull/366), thanks [@clach04](https://github.com/clach04)
 
 #### 5.5.3-beta-darodi.3:
 * sync requirements between setup.py and requirements.txt [ciromattia/kcc#411](https://github.com/ciromattia/kcc/pull/411), thanks [@StudioEtrange](https://github.com/StudioEtrange)
