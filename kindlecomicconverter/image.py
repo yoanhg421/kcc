@@ -18,7 +18,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+import io
 import os
 import mozjpeg_lossless_optimization
 from PIL import Image, ImageOps, ImageStat, ImageChops, ImageFilter
@@ -245,12 +245,15 @@ class ComicPage:
                 self.image.save(self.targetPath, 'PNG', optimize=1)
             else:
                 self.targetPath += '.jpg'
-                self.image.save(self.targetPath, 'JPEG', optimize=1, quality=85)
-                with open(self.targetPath, "rb") as input_jpeg_file:
-                    input_jpeg_bytes = input_jpeg_file.read()
-                output_jpeg_bytes = mozjpeg_lossless_optimization.optimize(input_jpeg_bytes)
-                with open(self.targetPath, "wb") as output_jpeg_file:
-                    output_jpeg_file.write(output_jpeg_bytes)
+                if self.opt.mozjpeg:
+                    with io.BytesIO() as output:
+                        self.image.save(output, format="JPEG")
+                        input_jpeg_bytes = output.getvalue()
+                        output_jpeg_bytes = mozjpeg_lossless_optimization.optimize(input_jpeg_bytes)
+                        with open(self.targetPath, "wb") as output_jpeg_file:
+                            output_jpeg_file.write(output_jpeg_bytes)
+                else:
+                    self.image.save(self.targetPath, 'JPEG', optimize=1, quality=85)
             return [md5Checksum(self.targetPath), flags, self.orgPath]
         except IOError as err:
             raise RuntimeError('Cannot save image. ' + str(err))

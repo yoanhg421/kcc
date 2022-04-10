@@ -9,3 +9,4 @@ build/
 KindleComicConverter.egg-info/
 .idea/
 /venv/
+/kindlegen.exe
