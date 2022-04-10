@@ -247,7 +247,7 @@ class ComicPage:
                 self.targetPath += '.jpg'
                 if self.opt.mozjpeg:
                     with io.BytesIO() as output:
-                        self.image.save(output, format="JPEG")
+                        self.image.save(output, format="JPEG", optimize=1, quality=85)
                         input_jpeg_bytes = output.getvalue()
                         output_jpeg_bytes = mozjpeg_lossless_optimization.optimize(input_jpeg_bytes)
                         with open(self.targetPath, "wb") as output_jpeg_file:
