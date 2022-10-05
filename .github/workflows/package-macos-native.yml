@@ -1,0 +1,95 @@
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: build KCC for mac os M1
+
+on:
+  push:
+    branches: [ pipeline_test ]
+    tags:
+      - "v*.*.*"
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+    env:
+        SIGNING_AUTH: ${{ secrets.SIGNING_AUTH }}
+        NOTARIZATION_USER: ${{ secrets.NOTARIZATION_USER }}
+        NOTARIZATION_PASS: ${{ secrets.NOTARIZATION_PASS }}
+        AUTOMATION_GITHUB_TOKEN: ${{ secrets.AUTOMATION_GITHUB_TOKEN }}
+        # We need the official Python, because the GA ones only support newer macOS versions
+        # The deployment target is picked up by the Python build tools automatically
+        # If updated, make sure to also set LSMinimumSystemVersion in SABnzbd.spec
+        PYTHON_VERSION: "3.8.10"
+        MACOSX_DEPLOYMENT_TARGET: "10.9"
+        # We need to force compile for universal2 support
+#        CFLAGS: -arch arm64 -arch x86_64
+        CFLAGS: -arch arm64
+    steps:
+      - uses: actions/checkout@v2
+#      - name: Set up Python
+#        uses: actions/setup-python@v2
+#        with:
+#          python-version: "3.8"
+      - name: Cache Python download
+        id: cache-python-download
+        uses: actions/cache@v2
+        with:
+          path: ~/python.pkg
+          key: macOS-Python-${{ env.PYTHON_VERSION }}
+      - name: Get Python
+        if: steps.cache-python-download.outputs.cache-hit != 'true'
+        run: curl https://www.python.org/ftp/python/${PYTHON_VERSION}/python-${PYTHON_VERSION}-macos11.pkg -o ~/python.pkg
+      - name: Install Python
+        run: sudo installer -pkg ~/python.pkg -target /
+      - name: Install Python dependencies
+        run: |
+          python3 --version
+          pip3 install --upgrade pip wheel
+          pip3 install --upgrade -r requirements.txt
+#      - name: Install python dependencies
+#        run: |
+#          python -m pip install --upgrade pip setuptools wheel pyinstaller
+#          pip install -r requirements.txt
+
+      - name: Checkout PyInstaller
+        # We need to build the PyInstaller bootloader from sources:
+        # https://github.com/pyinstaller/pyinstaller/issues/6235
+        uses: actions/checkout@v2
+        with:
+          repository: pyinstaller/pyinstaller
+          path: pyinstaller
+      - name: Build PyInstaller bootloader
+        # Make sure we checkout the latest stable release
+        run: |
+          python3 --version
+          cd pyinstaller/bootloader
+          git fetch --tags
+          git checkout $(git describe --tags $(git rev-list --tags --max-count=1))
+          python3 ./waf all
+          cd ..
+          python3 -m pip install .
+          cd ..
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: npm install -g appdmg
+      - name: build binary
+        run: |
+          python3 setup.py build_binary
+      - name: upload build
+        uses: actions/upload-artifact@v3
+        with:
+          name: mac-os-build
+          path: dist/*.dmg
+#      - name: Release
+#        uses: softprops/action-gh-release@v1
+#        with:
+#          draft: true
+#          prerelease: true
+#          generate_release_notes: true
+#          files: |
+#            CHANGELOG.md
+#            LICENSE.txt
+#            dist/*.dmg
