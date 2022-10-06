@@ -1,5 +1,8 @@
 # CHANGELOG
 
+#### 5.5.3-beta-darodi.6:
+* Option in GUI to have PNG instead of jpg images [darodi/kcc#3](https://github.com/darodi/kcc/issues/3), thanks [@darodi](https://github.com/darodi)
+
 #### 5.5.3-beta-darodi.5:
 * Use MozJPEG as the JPEG encoder : cli and GUI option [ciromattia/kcc#416](https://github.com/ciromattia/kcc/pull/416), thanks [@darodi](https://github.com/darodi)
 * Disable all image transformation : cli and GUI option [ciromattia/kcc#388](https://github.com/ciromattia/kcc/pull/388), thanks [@StudioEtrange](https://github.com/StudioEtrange)
