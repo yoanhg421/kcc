@@ -1,7 +1,7 @@
 # CHANGELOG
 
 #### 5.5.3-beta-darodi.7:
-* Option in GUI to have PNG instead of jpg images [ciromattia/kcc#439](https://github.com/ciromattia/kcc/issues/439), thanks [@darodi](https://github.com/darodi)
+* Option to turn 1x4 strips to 2x2 strips [ciromattia/kcc#439](https://github.com/ciromattia/kcc/issues/439), thanks [@darodi](https://github.com/darodi)
 
 #### 5.5.3-beta-darodi.6:
 * Option in GUI to have PNG instead of jpg images [darodi/kcc#3](https://github.com/darodi/kcc/issues/3), thanks [@darodi](https://github.com/darodi)
