@@ -1,5 +1,8 @@
 # CHANGELOG
 
+#### 5.5.3-beta-darodi.8:
+* Fix type error in autocontrastImage [ciromattia/kcc#432](https://github.com/ciromattia/kcc/issues/432), thanks [@darodi](https://github.com/darodi)
+
 #### 5.5.3-beta-darodi.7:
 * Option to turn 1x4 strips into 2x2 strips [ciromattia/kcc#439](https://github.com/ciromattia/kcc/issues/439), thanks [@darodi](https://github.com/darodi)
 
