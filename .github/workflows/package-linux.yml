@@ -34,7 +34,6 @@ jobs:
         pip install -r requirements.txt
     - name: build binary
       run: |
-#        python kcc.py --version
         pyinstaller --onefile --hidden-import=queue "kcc.py" -n "kcc_linux"
         chmod +x dist/kcc_linux
         dist/kcc_linux --version
