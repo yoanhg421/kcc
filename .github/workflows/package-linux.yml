@@ -1,3 +1,5 @@
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
 name: build KCC for Linux
 
 on:
@@ -33,10 +35,13 @@ jobs:
         python -m pip install --upgrade pip setuptools wheel pyinstaller
         pip install -r requirements.txt
     - name: build binary
+#      run: |
+#        python kcc.py --version
+#        pyinstaller --onefile --hidden-import=queue "kcc.py" -n "kcc_linux"
+#        chmod +x dist/kcc_linux
+#        dist/kcc_linux --version
       run: |
         pyinstaller --onefile --hidden-import=queue "kcc.py" -n "kcc_linux"
-        chmod +x dist/kcc_linux
-        dist/kcc_linux --version
     - name: upload build
       uses: actions/upload-artifact@v3
       with:
