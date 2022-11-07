@@ -1,8 +1,8 @@
 # KCC
 
 [![GitHub release](https://img.shields.io/github/v/release/darodi/kcc?display_name=tag&include_prereleases)](https://github.com/darodi/kcc/releases) 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/darodi/kcc/Docker?label=docker%20build)](https://github.com/darodi/kcc/pkgs/container/kcc)      
 [![PyPI](https://img.shields.io/github/v/release/darodi/kcc?display_name=tag&include_prereleases&label=testPypi)](https://test.pypi.org/project/KindleComicConverterDarodi/) 
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/darodi/kcc/Docker?label=docker%20build)](https://github.com/darodi/kcc/pkgs/container/kcc)      
 
 [![GitHub release](https://img.shields.io/github/release/ciromattia/kcc.svg)](https://github.com/ciromattia/kcc/releases) 
 [![PyPI](https://img.shields.io/pypi/v/KindleComicConverter.svg)](https://pypi.python.org/pypi/KindleComicConverter) 
@@ -33,23 +33,52 @@ If you find **KCC** valuable you can consider donating to the authors:
 
 ## BINARY RELEASES
 You can find the latest beta binaries here:
-**https://github.com/darodi/kcc/releases**
 
-
-You can find the latest released binary at the following links:
-- **[Windows](http://kcc.iosphe.re/Windows/) (64-bit only)**
-- **[macOS](http://kcc.iosphe.re/OSX/) (10.14+)**
-- **Linux:** Currently unavailable.
+- **https://github.com/darodi/kcc/releases**
+- **Linux:** 
+  - make binary executable
+    ```
+    chmod a+x kcc_linux
+    ```
+  - Download kindlegen
+    ```
+    wget -qO- https://archive.org/download/kindlegen_linux_2_6_i386_v2_9/kindlegen_linux_2.6_i386_v2_9.tar.gz | tar xvz kindlegen
+    ```
+    copy kindlegen into '/usr/local/bin' and grant execute permissions for MOBI conversion.
+    
+    ```
+    $ sudo cp -R kindlegen /usr/local/bin && sudo chmod a+x /usr/local/bin/kindlegen 
+    ```
+  - run with backend x11 or it might not work with fedora
+    ```
+    GDK_BACKEND=x11 ./kcc_linux
+    ```
 
 ## PYPI
-**KCC** is also available on PyPI.
+**KCC** is also available on PyPI.  
+On Debian based distributions these two commands should install all needed dependencies:
+```
+sudo apt-get install python3 python3-dev python3-pip libpng-dev libjpeg-dev p7zip-full python3-pyqt5
+pip3 install --user --upgrade pillow python-slugify psutil pyqt5 raven
+```
+beta version 
+```
+pip install --index-url https://test.pypi.org/simple/  KindleComicConverterDarodi
+```
+
+final version
 ```
 pip install --user KindleComicConverter
 ```
 
-beta version 
+## AppImage
+make appImage executable
 ```
-pip install --index-url https://test.pypi.org/simple/  KindleComicConverterDarodi
+chmod a+x kindleComicConverter-latest-x86_64.AppImage
+```
+run with backend x11 or it might not work with fedora
+```
+GDK_BACKEND=x11 ./kindleComicConverter-latest-x86_64.AppImage
 ```
 
 ## DOCKER
@@ -59,6 +88,8 @@ pip install --index-url https://test.pypi.org/simple/  KindleComicConverterDarod
 install kindlegen in your working directory and get last docker image
 ```
 wget -qO- https://archive.org/download/kindlegen_linux_2_6_i386_v2_9/kindlegen_linux_2.6_i386_v2_9.tar.gz | tar xvz kindlegen
+```
+```
 docker pull ghcr.io/darodi/kcc:latest
 ```
 
@@ -84,12 +115,13 @@ Following software is required to run Linux version of **KCC** and/or bare sourc
 
 On Debian based distributions these two commands should install all needed dependencies:
 ```
-sudo apt-get install python3 python3-dev python3-pip libpng-dev libjpeg-dev p7zip-full
+sudo apt-get install python3 python3-dev python3-pip libpng-dev libjpeg-dev p7zip-full python3-pyqt5
 pip3 install --user --upgrade pillow python-slugify psutil pyqt5 raven
 ```
 
 ### Optional dependencies
-- [KindleGen](http://www.amazon.com/gp/feature.html?ie=UTF8&docId=1000765211) v2.9+ in a directory reachable by your _PATH_ or in _KCC_ directory *(For MOBI generation)*
+- KindleGen ~~[deprecated link](http://www.amazon.com/gp/feature.html?ie=UTF8&docId=1000765211)~~ v2.9+ in a directory reachable by your _PATH_ or in _KCC_ directory *(For MOBI generation)
+ – which offers a command line interface and supports [Linux](https://archive.org/details/kindlegen2.9) [(mirror1)](https://archive.org/download/kindlegen_linux_2_6_i386_v2_9/kindlegen_linux_2.6_i386_v2_9.tar.gz), [Mac OSX](https://web.archive.org/web/20190905040839/https://www.amazon.com/gp/feature.html?ie=UTF8&docId=1000765211) and [Windows](https://archive.org/details/kindlegen_win32_v2_9) – has been deprecated, but binaries can still be found on the internet.
 - [7z](http://www.7-zip.org/download.html) *(For CBZ/ZIP, CBR/RAR, 7z/CB7 support)*
 
 ## INPUT FORMATS
@@ -217,7 +249,10 @@ _Originally posted by @hhtien1408 in https://github.com/ciromattia/kcc/issues/43
 ```
 $ git clone -branch beta_release https://github.com/darodi/kcc.git
 ```
-
+On Debian based distributions these two commands should install all needed dependencies:
+```
+sudo apt-get install python3 python3-dev python3-pip libpng-dev libjpeg-dev p7zip-full python3-pyqt5
+```
 Then install the necessary packages. You can do it by running the following command. The requirements.txt file is inside this repository, you will see it when you clone the repo.
 
 ```
@@ -282,11 +317,6 @@ $ sudo cp -R '/home/user/Desktop/kcc.png' '/home/user/.local/share/icons'
 ```
 
 
-
-
-      
-
-
 ## PRIVACY
 **KCC** is initiating internet connections in two cases:
 * During startup - Version check.
@@ -296,5 +326,5 @@ $ sudo cp -R '/home/user/Desktop/kcc.png' '/home/user/.local/share/icons'
 Please check [wiki page](https://github.com/ciromattia/kcc/wiki/Known-issues).
 
 ## COPYRIGHT
-Copyright (c) 2012-2019 Ciro Mattia Gonano and Paweł Jastrzębski.
-**KCC** is released under ISC LICENSE; see LICENSE.txt for further details.
+Copyright (c) 2012-2019 Ciro Mattia Gonano and Paweł Jastrzębski.   
+**KCC** is released under ISC LICENSE; see [LICENSE.txt](./LICENSE.txt) for further details.
