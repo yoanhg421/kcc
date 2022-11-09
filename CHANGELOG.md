@@ -1,5 +1,8 @@
 # CHANGELOG
 
+#### 5.5.3b10:
+* Linux version and appImage [darodi/kcc#6](https://github.com/darodi/kcc/issues/6), thanks [@darodi](https://github.com/darodi)
+
 #### 5.5.3b9:
 * docker image for command line [darodi/kcc#5](https://github.com/darodi/kcc/issues/5), thanks [@darodi](https://github.com/darodi)
 

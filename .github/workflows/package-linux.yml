@@ -70,13 +70,13 @@ jobs:
       with:
         name: AppImage
         path: './*.AppImage*'
-#    - name: Release
-#      uses: softprops/action-gh-release@v1
-#      with:
-#        prerelease: true
-#        generate_release_notes: true
-#        files: |
-#          CHANGELOG.md
-#          LICENSE.txt
-#          dist/kcc_linux
-#          *.AppImage*
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        prerelease: true
+        generate_release_notes: true
+        files: |
+          CHANGELOG.md
+          LICENSE.txt
+          dist/kcc_linux
+          *.AppImage*
