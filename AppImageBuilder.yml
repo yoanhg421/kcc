@@ -3,7 +3,7 @@ version: 1
 script:
  - rm -rf AppDir || true
  - mkdir -p AppDir/usr/share/icons/hicolor/64x64/apps/
- - cp -a dist/kcc_linux AppDir/
+ - cp -a dist/kcc_linux* AppDir/ && mv AppDir/kcc_linux* AppDir/kcc_linux
  - cp icons/comic2ebook.png AppDir/usr/share/icons/hicolor/64x64/apps/
 AppDir:
   path: AppDir

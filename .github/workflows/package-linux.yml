@@ -35,12 +35,11 @@ jobs:
       run: |
         sudo apt-get update 
         sudo apt-get install -y libpng-dev libjpeg-dev p7zip-full python3-pyqt5 squashfs-tools 
-        which mksquashfs
         python -m pip install --upgrade pip setuptools wheel pyinstaller
         pip install -r requirements.txt
     - name: build binary
       run: |
-        pyinstaller --onefile --hidden-import=queue "kcc.py" -n "kcc_linux"
+        python setup.py build_binary
         chmod +x dist/kcc_linux
     - name: upload build
       uses: actions/upload-artifact@v3
