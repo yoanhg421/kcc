@@ -1,5 +1,8 @@
 # CHANGELOG
 
+#### 5.5.3b11:
+*  KFX Output in GUI [darodi/kcc#9](https://github.com/darodi/kcc/issues/9), thanks [@darodi](https://github.com/darodi)
+
 #### 5.5.3b10:
 * Linux version and appImage [darodi/kcc#6](https://github.com/darodi/kcc/issues/6), thanks [@darodi](https://github.com/darodi)
 
