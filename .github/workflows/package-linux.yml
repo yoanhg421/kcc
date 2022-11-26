@@ -40,7 +40,7 @@ jobs:
     - name: build binary
       run: |
         python setup.py build_binary
-        chmod +x dist/kcc_linux
+        chmod +x dist/kcc_linux*
     - name: upload build
       uses: actions/upload-artifact@v3
       with:
