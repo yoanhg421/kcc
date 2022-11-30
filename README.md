@@ -49,6 +49,10 @@ You can find the latest released binary at the following link:
     ```bash
     $ chmod a+x kcc_linux
     ```
+ - install 7zip
+   ```bash
+   $ sudo apt-get install -y p7zip-full
+   ```
  - Download kindlegen
    ```bash
    $ wget -qO- https://archive.org/download/kindlegen_linux_2_6_i386_v2_9/kindlegen_linux_2.6_i386_v2_9.tar.gz | tar xvz kindlegen
@@ -75,52 +79,64 @@ You can find the old released binary at the following links:
 ### PYPI
 **KCC** is also available on PyPI.  
 On Debian based distributions these two commands should install all needed dependencies:
-```
-sudo apt-get install python3 python3-dev python3-pip libpng-dev libjpeg-dev p7zip-full python3-pyqt5
-pip3 install --user --upgrade pillow python-slugify psutil pyqt5 raven
+```bash
+$ sudo apt-get install python3 python3-dev python3-pip libpng-dev libjpeg-dev p7zip-full python3-pyqt5
+$ pip3 install --user --upgrade pillow python-slugify psutil pyqt5 raven
 ```
 beta version 
-```
-pip install --index-url https://test.pypi.org/simple/  KindleComicConverterDarodi
+```bash
+$ pip install --index-url https://test.pypi.org/simple/  KindleComicConverterDarodi
 ```
 
 final version
-```
-pip install --user KindleComicConverter
+```bash
+$ pip install --user KindleComicConverter
 ```
 
 
 
 
 ### APPIMAGE
-make appImage executable
-```
-chmod a+x kindleComicConverter-latest-x86_64.AppImage
-```
-run with backend x11 or it might not work with fedora
-```
-GDK_BACKEND=x11 ./kindleComicConverter-latest-x86_64.AppImage
-```
+- install 7zip
+  ```bash
+  $ sudo apt-get install -y p7zip-full
+  ```
+- Download kindlegen
+  ```bash
+  $ wget -qO- https://archive.org/download/kindlegen_linux_2_6_i386_v2_9/kindlegen_linux_2.6_i386_v2_9.tar.gz | tar xvz kindlegen
+  ```
+- copy kindlegen into '/usr/local/bin' and grant execute permissions for MOBI conversion.
+  ```bash
+  $ sudo cp -R kindlegen /usr/local/bin && sudo chmod a+x /usr/local/bin/kindlegen 
+  ```
+- make appImage executable
+    ```bash
+    $ chmod a+x kindleComicConverter-latest-x86_64.AppImage
+    ```
+- run with backend x11 or it might not work with fedora
+    ```bash
+    $ GDK_BACKEND=x11 ./kindleComicConverter-latest-x86_64.AppImage
+    ```
 
 
 ### DOCKER
 
 install kindlegen in your working directory and get last docker image
+```bash
+$ wget -qO- https://archive.org/download/kindlegen_linux_2_6_i386_v2_9/kindlegen_linux_2.6_i386_v2_9.tar.gz | tar xvz kindlegen
 ```
-wget -qO- https://archive.org/download/kindlegen_linux_2_6_i386_v2_9/kindlegen_linux_2.6_i386_v2_9.tar.gz | tar xvz kindlegen
-```
-```
-docker pull ghcr.io/darodi/kcc:latest
+```bash
+$ docker pull ghcr.io/darodi/kcc:latest
 ```
 
 execute kcc-c2e
-```
-docker run --rm -v "$(pwd):/app" ghcr.io/darodi/kcc:latest 
+```bash
+$ docker run --rm -v "$(pwd):/app" ghcr.io/darodi/kcc:latest 
 ```
 
 execute kcc-c2p
-```
-docker run --entrypoint /opt/kcc/kcc-c2p.py --rm -v "$(pwd):/app" ghcr.io/darodi/kcc:latest 
+```bash
+$ docker run --entrypoint /opt/kcc/kcc-c2p.py --rm -v "$(pwd):/app" ghcr.io/darodi/kcc:latest 
 ```
 
 
@@ -154,23 +170,23 @@ $ git clone -branch beta_release https://github.com/darodi/kcc.git
 ```
 On Debian based distributions these two commands should install all needed dependencies:
 ```bash
-sudo apt-get install python3 python3-dev python3-pip libpng-dev libjpeg-dev p7zip-full python3-pyqt5
+$ sudo apt-get install python3 python3-dev python3-pip libpng-dev libjpeg-dev p7zip-full python3-pyqt5
 ```
 Then install the necessary packages. You can do it by running the following command. The requirements.txt file is inside this repository, you will see it when you clone the repo.
 
-```
+```bash
 $ pip3 install -r 'requirements.txt' 
 ```
 
 This should install the required packages. You can check the version by running
 
-```
+```bash
 $ pip3 freeze
 ```
 
 If the packages are in the wrong version, you can try to upgrade them by running
 
-```
+```bash
 $ pip3 install --upgrade name_of_the_package
 ```
 
