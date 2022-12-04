@@ -1,5 +1,9 @@
 # CHANGELOG
 
+#### 5.5.3b14:
+*    profiles: add Kindle11 and Kindle Scribe  [darodi/kcc#16](https://github.com/darodi/kcc/issues/16), thanks [@darodi](https://github.com/darodi)
+*    Update with new Kobo models   [darodi/kcc#15](https://github.com/darodi/kcc/issues/15), thanks [@lennie420](https://github.com/lennie420)
+
 #### 5.5.3b13:
 *   Keep epub file when selecting another type of output file [darodi/kcc#12](https://github.com/darodi/kcc/issues/12), thanks [@darodi](https://github.com/darodi)
 
