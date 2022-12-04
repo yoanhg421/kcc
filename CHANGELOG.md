@@ -19,27 +19,27 @@
 #### 5.5.3b9:
 * docker image for command line [darodi/kcc#5](https://github.com/darodi/kcc/issues/5), thanks [@darodi](https://github.com/darodi)
 
-#### 5.5.3-beta-darodi.8:
+#### 5.5.3b8:
 * Fix type error in autocontrastImage [ciromattia/kcc#432](https://github.com/ciromattia/kcc/issues/432), thanks [@darodi](https://github.com/darodi)
 
-#### 5.5.3-beta-darodi.7:
+#### 5.5.3b7:
 * Option to turn 1x4 strips into 2x2 strips [ciromattia/kcc#439](https://github.com/ciromattia/kcc/issues/439), thanks [@darodi](https://github.com/darodi)
 
-#### 5.5.3-beta-darodi.6:
+#### 5.5.3b6:
 * Option in GUI to have PNG instead of jpg images [darodi/kcc#3](https://github.com/darodi/kcc/issues/3), thanks [@darodi](https://github.com/darodi)
 
-#### 5.5.3-beta-darodi.5:
+#### 5.5.3b5:
 * Use MozJPEG as the JPEG encoder : cli and GUI option [ciromattia/kcc#416](https://github.com/ciromattia/kcc/pull/416), thanks [@darodi](https://github.com/darodi)
 * Disable all image transformation : cli and GUI option [ciromattia/kcc#388](https://github.com/ciromattia/kcc/pull/388), thanks [@StudioEtrange](https://github.com/StudioEtrange)
 
-#### 5.5.3-beta-darodi.4:
+#### 5.5.3b4:
 * file selector add All `*.*` [ciromattia/kcc#412](https://github.com/ciromattia/kcc/pull/412), thanks [@StudioEtrange](https://github.com/StudioEtrange)
 * Clarify Pillow version requirement [ciromattia/kcc#366](https://github.com/ciromattia/kcc/pull/366), thanks [@clach04](https://github.com/clach04)
 
-#### 5.5.3-beta-darodi.3:
+#### 5.5.3b3:
 * sync requirements between setup.py and requirements.txt [ciromattia/kcc#411](https://github.com/ciromattia/kcc/pull/411), thanks [@StudioEtrange](https://github.com/StudioEtrange)
 
-#### 5.5.3-beta-darodi.2:
+#### 5.5.3b2:
 * Add profile for Kindle PW5/Signature [ciromattia/kcc#405](https://github.com/ciromattia/kcc/pull/405), thanks [@Einlar](https://github.com/Einlar), [@darodi](https://github.com/darodi)
 * Fixed the skipped/missed images and/or panels [ciromattia/kcc#393](https://github.com/ciromattia/kcc/pull/393), thanks [@FulyaDemirkan](https://github.com/FulyaDemirkan)
 * Add profiles for the Kobo Clara HD and Libra H2O [ciromattia/kcc#331](https://github.com/ciromattia/kcc/pull/331), thanks [@fbriere](https://github.com/fbriere)
