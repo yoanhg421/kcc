@@ -88,7 +88,7 @@ beta version
 $ pip install --index-url https://test.pypi.org/simple/  KindleComicConverterDarodi
 ```
 
-final version
+stable version
 ```bash
 $ pip install --user KindleComicConverter
 ```
