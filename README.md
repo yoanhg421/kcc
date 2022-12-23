@@ -2,7 +2,7 @@
 
 [![GitHub release](https://img.shields.io/github/v/release/darodi/kcc?display_name=tag&include_prereleases)](https://github.com/darodi/kcc/releases) 
 [![PyPI](https://img.shields.io/github/v/release/darodi/kcc?display_name=tag&include_prereleases&label=testPypi)](https://test.pypi.org/project/KindleComicConverterDarodi/) 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/darodi/kcc/Docker?label=docker%20build)](https://github.com/darodi/kcc/pkgs/container/kcc) 
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/darodi/kcc/docker-publish.yml?branch=beta_release&label=docker%20build)](https://github.com/darodi/kcc/pkgs/container/kcc) 
 [![AUR](https://img.shields.io/aur/version/kcc-beta.svg)](https://aur.archlinux.org/packages/kcc-beta)
 
 
