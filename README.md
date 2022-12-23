@@ -42,8 +42,11 @@ You can find the latest released binary at the following link:
 
 **https://github.com/darodi/kcc/releases**
 
-
-
+#### MacOS installation    
+If you can't open the last beta and the OS says it's damaged, fix it with:
+```
+xattr -d com.apple.quarantine /Applications/Kindle\ Comic\ Converter.app
+```
 
 
 #### Linux installation    
