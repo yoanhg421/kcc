@@ -24,7 +24,9 @@ jobs:
         MACOSX_DEPLOYMENT_TARGET: "10.9"
         # We need to force compile for universal2 support
 #        CFLAGS: -arch arm64 -arch x86_64
+#        ARCHFLAGS: -arch x86_64 -arch arm64
         CFLAGS: -arch arm64
+        ARCHFLAGS: -arch arm64
     steps:
       - uses: actions/checkout@v2
 #      - name: Set up Python
@@ -61,12 +63,13 @@ jobs:
           path: pyinstaller
       - name: Build PyInstaller bootloader
         # Make sure we checkout the latest stable release
+        #          CC='clang -arch=arm64' python waf --no-universal2 all
         run: |
           python3 --version
           cd pyinstaller/bootloader
           git fetch --tags
           git checkout $(git describe --tags $(git rev-list --tags --max-count=1))
-          python3 ./waf all
+          python3 ./waf all --target-arch=64bit
           cd ..
           python3 -m pip install .
           cd ..
@@ -77,7 +80,7 @@ jobs:
       - run: npm install -g appdmg
       - name: build binary
         run: |
-          python3 setup.py build_binary
+          python3 setup_native.py build_binary
       - name: upload build
         uses: actions/upload-artifact@v3
         with:

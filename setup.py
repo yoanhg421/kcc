@@ -14,6 +14,7 @@ import os
 import sys
 import shutil
 import setuptools
+import platform
 import distutils.cmd
 from kindlecomicconverter import __version__
 
@@ -46,30 +47,17 @@ class BuildBinaryCommand(distutils.cmd.Command):
             with open(OSX_INFO_PLIST, 'w') as file:
                 file.write(filedata)
 
-            if platform.processor() == 'i386':
-                os.system('pyinstaller -y -F -i icons/comic2ebook.icns -n "Kindle Comic Converter" -w -s kcc.py')
-                os.makedirs('dist/Kindle Comic Converter.app/Contents/Resources/Codecs')
-                shutil.copy('other/osx/7z', 'dist/Kindle Comic Converter.app/Contents/Resources')
-                shutil.copy('other/osx/7z.so', 'dist/Kindle Comic Converter.app/Contents/Resources')
-                shutil.copy('other/osx/Rar.so', 'dist/Kindle Comic Converter.app/Contents/Resources/Codecs')
-                shutil.copy('other/osx/Info.plist', 'dist/Kindle Comic Converter.app/Contents')
-                shutil.copy('LICENSE.txt', 'dist/Kindle Comic Converter.app/Contents/Resources')
-                shutil.copy('other/windows/Additional-LICENSE.txt', 'dist/Kindle Comic Converter.app/Contents/Resources')
-                os.chmod('dist/Kindle Comic Converter.app/Contents/Resources/7z', 0o777)
-                os.system('appdmg kcc.json dist/KindleComicConverter_osx_x86_64_' + VERSION + '.dmg')
-                exit(0)
-            if platform.processor() == 'arm':
-                os.system('pyinstaller -y -F -i icons/comic2ebook.icns -n "Kindle Comic Converter" -w -s kcc.py')
-                os.makedirs('dist/Kindle Comic Converter.app/Contents/Resources/Codecs')
-                shutil.copy('other/osx_M1/7z', 'dist/Kindle Comic Converter.app/Contents/Resources')
-                shutil.copy('other/osx_M1/7z.so', 'dist/Kindle Comic Converter.app/Contents/Resources')
-                shutil.copy('other/osx_M1/Rar.so', 'dist/Kindle Comic Converter.app/Contents/Resources/Codecs')
-                shutil.copy('other/osx/Info.plist', 'dist/Kindle Comic Converter.app/Contents')
-                shutil.copy('LICENSE.txt', 'dist/Kindle Comic Converter.app/Contents/Resources')
-                shutil.copy('other/windows/Additional-LICENSE.txt', 'dist/Kindle Comic Converter.app/Contents/Resources')
-                os.chmod('dist/Kindle Comic Converter.app/Contents/Resources/7z', 0o777)
-                os.system('appdmg kcc.json dist/KindleComicConverter_osx_M1_' + VERSION + '.dmg')
-                exit(0)
+            os.system('pyinstaller -y -F -i icons/comic2ebook.icns -n "Kindle Comic Converter" -w -s kcc.py')
+            os.makedirs('dist/Kindle Comic Converter.app/Contents/Resources/Codecs')
+            shutil.copy('other/osx/7z', 'dist/Kindle Comic Converter.app/Contents/Resources')
+            shutil.copy('other/osx/7z.so', 'dist/Kindle Comic Converter.app/Contents/Resources')
+            shutil.copy('other/osx/Rar.so', 'dist/Kindle Comic Converter.app/Contents/Resources/Codecs')
+            shutil.copy('other/osx/Info.plist', 'dist/Kindle Comic Converter.app/Contents')
+            shutil.copy('LICENSE.txt', 'dist/Kindle Comic Converter.app/Contents/Resources')
+            shutil.copy('other/windows/Additional-LICENSE.txt', 'dist/Kindle Comic Converter.app/Contents/Resources')
+            os.chmod('dist/Kindle Comic Converter.app/Contents/Resources/7z', 0o777)
+            os.system('appdmg kcc.json dist/KindleComicConverter_osx_x86_64_' + VERSION + '.dmg')
+            exit(0)
         elif sys.platform == 'win32':
             os.system('pyinstaller -y -F -i icons\\comic2ebook.ico -n KCC_' + VERSION + ' -w --noupx kcc.py')
             exit(0)
