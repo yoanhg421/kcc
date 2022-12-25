@@ -43,12 +43,16 @@ jobs:
         if: steps.cache-python-download.outputs.cache-hit != 'true'
         run: curl https://www.python.org/ftp/python/${PYTHON_VERSION}/python-${PYTHON_VERSION}-macos11.pkg -o ~/python.pkg
       - name: Install Python
-        run: sudo installer -pkg ~/python.pkg -target /
+        run: |
+          sudo installer -pkg ~/python.pkg -target /
+          unlink /usr/local/bin/python
+          ln -s /usr/local/bin/python3 /usr/local/bin/python
       - name: Install Python dependencies
         run: |
           python3 --version
           pip3 install --upgrade pip wheel
-          pip3 install --upgrade -r requirements.txt
+          pip3 download -r requirements.txt --platform macosx_10_10_universal2 --only-binary :all: --no-deps --dest .
+          pip3 install -r requirements.txt --no-cache-dir --no-index --find-links .
 #      - name: Install python dependencies
 #        run: |
 #          python -m pip install --upgrade pip setuptools wheel pyinstaller
