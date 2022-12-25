@@ -43,6 +43,18 @@ You can find the latest released binary at the following link:
 **https://github.com/darodi/kcc/releases**
 
 #### MacOS installation    
+##### x86_64 version
+see: KindleComicConverter_osx_5.5.3b*.dmg in **https://github.com/darodi/kcc/releases**   
+If you can't open the last beta and the OS says it's damaged, fix it with:
+```
+xattr -d com.apple.quarantine /Applications/Kindle\ Comic\ Converter.app
+```
+
+##### M1/M2 arm64 version
+see this building method:
+_Originally posted by @celogeek in https://github.com/darodi/kcc/issues/4#issuecomment-1364553511_
+      
+
 If you can't open the last beta and the OS says it's damaged, fix it with:
 ```
 xattr -d com.apple.quarantine /Applications/Kindle\ Comic\ Converter.app
