@@ -51,7 +51,7 @@ jobs:
         run: |
           python3 --version
           pip3 install --upgrade pip wheel
-          pip3 download -r requirements.txt --platform macosx_10_10_universal2 --only-binary :all: --no-deps --dest .
+          pip3 download -r requirements.txt --platform macosx_11_0_arm64 --only-binary :all: --no-deps --dest .
           pip3 install -r requirements.txt --no-cache-dir --no-index --find-links .
 #      - name: Install python dependencies
 #        run: |
