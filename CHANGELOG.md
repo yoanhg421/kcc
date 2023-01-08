@@ -2,6 +2,17 @@
 
 #### 5.5.3b19:
 *    Fix Docker 7z missing  [darodi/kcc#31](https://github.com/darodi/kcc/issues/31), thanks [@darodi](https://github.com/darodi)
+*    update to python 3.11, thanks [@darodi](https://github.com/darodi)
+*    Bump python from 3.8-slim-buster to 3.11-slim-buster dependabot[bot]
+*    More precise type in slugify dependency check, thanks [@bamless](https://github.com/bamless)
+*    Fix 'slugify' dependency check, thanks [@bamless](https://github.com/bamless)
+*    Update python-slugify requirement from <3.0.0,>=1.2.1 to >=1.2.1,<8.0.0 dependabot[bot]
+*    Bump actions/setup-python from 3 to 4 (#32) dependabot[bot]
+*    Bump actions/setup-node from 2 to 3 (#34) dependabot[bot]
+
+
+#### 5.5.3b19:
+*    Fix Docker 7z missing  [darodi/kcc#31](https://github.com/darodi/kcc/issues/31), thanks [@darodi](https://github.com/darodi)
 
 #### 5.5.3b18:
 *    Spread splitter not keeping aspect ratio    [darodi/kcc#27](https://github.com/darodi/kcc/issues/27), thanks [@darodi](https://github.com/darodi)
