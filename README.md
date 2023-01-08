@@ -401,12 +401,6 @@ The app relies and includes the following scripts:
 * [Kobo Forma](http://kcc.iosphe.re/Samples/Ubunchu-KoF.kepub.epub)
 
 
-
-## PRIVACY
-**KCC** is initiating internet connections in two cases:
-* During startup - Version check.
-* When error occurs - Automatic reporting on Windows and macOS.
-
 ## KNOWN ISSUES
 Please check [wiki page](https://github.com/ciromattia/kcc/wiki/Known-issues).
 
