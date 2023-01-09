@@ -40,7 +40,9 @@ xattr -d com.apple.quarantine /Applications/Kindle\ Comic\ Converter.app
 ```
 
 ##### M1/M2 arm64 version
-see this building method:
+
+Building is not available in github on M1 arch.  
+See this building method, to build it locally:  
 _Originally posted by @celogeek in https://github.com/darodi/kcc/issues/4#issuecomment-1364553511_
       
 
@@ -49,6 +51,8 @@ If you can't open the last beta and the OS says it's damaged, fix it with:
 xattr -d com.apple.quarantine /Applications/Kindle\ Comic\ Converter.app
 ```
 
+Or you could also have a look at this other project:
+https://github.com/celogeek/go-comic-converter
 
 #### Linux installation    
  - make binary executable  
