@@ -60,6 +60,8 @@ class BuildBinaryCommand(distutils.cmd.Command):
             exit(0)
         elif sys.platform == 'win32':
             os.system('pyinstaller -y -F -i icons\\comic2ebook.ico -n KCC_' + VERSION + ' -w --noupx kcc.py')
+            os.system('pyinstaller -y -F -i icons\\comic2ebook.ico -n KCC-C2E_' + VERSION + ' -w --noupx kcc-c2e.py')
+            os.system('pyinstaller -y -F -i icons\\comic2ebook.ico -n KCC-C2P_' + VERSION + ' -w --noupx kcc-c2p.py')
             exit(0)
         elif sys.platform == 'linux':
             os.system(
@@ -95,7 +97,7 @@ setuptools.setup(
         'PyQt5>=5.6.0',
         'Pillow>=5.2.0',
         'psutil>=5.0.0',
-        'python-slugify>=1.2.1,<8.0.0',
+        'python-slugify>=1.2.1',
         'raven>=6.0.0',
         'mozjpeg-lossless-optimization>=1.1.2',
     ],
