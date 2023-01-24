@@ -45,4 +45,4 @@ jobs:
           files: |
             CHANGELOG.md
             LICENSE.txt
-            dist/*.exe
+            dist/windows/*.exe
