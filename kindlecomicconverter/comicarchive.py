@@ -43,10 +43,12 @@ class ComicArchive:
             for line in process.stdout:
                 if b'Details: ' in line:
                     self.type = line.rstrip().decode().split(' ')[1].upper()
-                    print(self.type)
                     break
-            if(self.type != 'RAR'):
+            process.communicate()
+            if process.returncode != 0:
                 raise OSError('Archive is corrupted or encrypted.')
+            elif self.type not in ['7Z', 'RAR', 'RAR5', 'ZIP']:
+                raise OSError('Unsupported archive format.')
         elif self.type not in ['7Z', 'RAR', 'RAR5', 'ZIP']:
             raise OSError('Unsupported archive format.')
 
