@@ -5,7 +5,6 @@ name: build KCC for windows with docker
 on:
   workflow_dispatch:
   push:
-    branches: [ command_line_exe_windows ]
     tags:
       - "v*.*.*"
 
@@ -13,7 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 #      - name: Set up Python
 #        uses: actions/setup-python@v4
 #        with:
@@ -30,7 +29,23 @@ jobs:
         uses: JackMcKew/pyinstaller-action-windows@main
         with:
           path: .
-          spec: ./KCC_test.spec
+          spec: ./kcc.spec
+      - name: Package Application
+        uses: JackMcKew/pyinstaller-action-windows@main
+        with:
+          path: .
+          spec: ./kcc-c2e.spec
+      - name: Package Application
+        uses: JackMcKew/pyinstaller-action-windows@main
+        with:
+          path: .
+          spec: ./kcc-c2p.spec
+      - name: rename binaries
+        run: |   
+          version_built=$(cat kindlecomicconverter/__init__.py | grep version | awk '{print $3}' | sed "s/[^.0-9b]//g")
+          mv dist/windows/kcc.exe dist/windows/kcc_${version_built}.exe 
+          mv dist/windows/kcc-c2e.exe dist/windows/kcc-c2e_${version_built}.exe 
+          mv dist/windows/kcc-c2p.exe dist/windows/kcc-c2p_${version_built}.exe
       - name: upload build
         uses: actions/upload-artifact@v3
         with:
