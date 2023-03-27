@@ -60,8 +60,6 @@ class BuildBinaryCommand(distutils.cmd.Command):
             exit(0)
         elif sys.platform == 'win32':
             os.system('pyinstaller -y -F -i icons\\comic2ebook.ico -n KCC_' + VERSION + ' -w --noupx kcc.py')
-            # os.system('pyinstaller -y -F -i icons\\comic2ebook.ico -n KCC-C2E_' + VERSION + ' -w --noupx kcc-c2e.py')
-            # os.system('pyinstaller -y -F -i icons\\comic2ebook.ico -n KCC-C2P_' + VERSION + ' -w --noupx kcc-c2p.py')
             exit(0)
         elif sys.platform == 'linux':
             os.system(

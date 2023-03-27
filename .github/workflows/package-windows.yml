@@ -5,9 +5,21 @@ name: build KCC for windows
 on:
   workflow_dispatch:
   push:
-    branches: [ command_line_exe_windows ]
     tags:
       - "v*.*.*"
+
+    # Don't trigger if it's just a documentation update
+    paths-ignore:
+      - '**.md'
+      - '**.MD'
+      - '**.yml'
+      - '**.sh'
+      - 'docs/**'
+      - 'Dockerfile'
+      - 'LICENSE'
+      - '.gitattributes'
+      - '.gitignore'
+      - '.dockerignore'
 
 jobs:
   build:
