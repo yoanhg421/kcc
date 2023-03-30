@@ -111,13 +111,18 @@ def buildHTML(path, imgfile, imgfilepath):
                   "<html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:epub=\"http://www.idpf.org/2007/ops\">\n",
                   "<head>\n",
                   "<title>", hescape(filename[0]), "</title>\n",
-                  "<link href=\"", "../" * (backref - 1), "style.css\" type=\"text/css\" rel=\"stylesheet\"/>\n",
+                  "<link href=\"", "../" *
+                  (backref - 1), "style.css\" type=\"text/css\" rel=\"stylesheet\"/>\n",
                   "<meta name=\"viewport\" "
-                  "content=\"width=" + str(imgsize[0]) + ", height=" + str(imgsize[1]) + "\"/>\n"
+                  "content=\"width=" +
+                  str(imgsize[0]) + ", height=" + str(imgsize[1]) + "\"/>\n"
                   "</head>\n",
                   "<body style=\"" + additionalStyle + "\">\n",
-                  "<div style=\"text-align:center;top:" + getTopMargin(deviceres, imgsizeframe) + "%;\">\n",
-                  "<img width=\"" + str(imgsizeframe[0]) + "\" height=\"" + str(imgsizeframe[1]) + "\" ",
+                  "<div style=\"text-align:center;top:" +
+                  getTopMargin(deviceres, imgsizeframe) + "%;\">\n",
+                  "<img width=\"" +
+                  str(imgsizeframe[0]) + "\" height=\"" +
+                  str(imgsizeframe[1]) + "\" ",
                   "src=\"", "../" * backref, "Images/", postfix, imgfile, "\"/>\n</div>\n"])
     if options.iskindle and options.panelview:
         if options.autoscale:
@@ -187,8 +192,12 @@ def buildHTML(path, imgfile, imgfilepath):
         f.write("</div>\n")
         for box in boxes:
             f.writelines(["<div class=\"PV-P\" id=\"" + box + "-P\" style=\"" + additionalStyle + "\">\n",
-                          "<img style=\"" + boxStyles[box] + "\" src=\"", "../" * backref, "Images/", postfix,
-                          imgfile, "\" width=\"" + str(size[0]) + "\" height=\"" + str(size[1]) + "\"/>\n",
+                          "<img style=\"" +
+                          boxStyles[box] + "\" src=\"", "../" *
+                          backref, "Images/", postfix,
+                          imgfile, "\" width=\"" +
+                          str(size[0]) + "\" height=\"" +
+                          str(size[1]) + "\"/>\n",
                           "</div>\n"])
     f.writelines(["</body>\n",
                   "</html>\n"])
@@ -211,7 +220,8 @@ def buildNCX(dstdir, title, chapters, chapternames):
                   "<docTitle><text>", hescape(title), "</text></docTitle>\n",
                   "<navMap>\n"])
     for chapter in chapters:
-        folder = chapter[0].replace(os.path.join(dstdir, 'OEBPS'), '').lstrip('/').lstrip('\\\\')
+        folder = chapter[0].replace(os.path.join(
+            dstdir, 'OEBPS'), '').lstrip('/').lstrip('\\\\')
         filename = getImageFileName(os.path.join(folder, chapter[1]))
         navID = folder.replace('/', '_').replace('\\', '_')
         if options.chapters:
@@ -240,25 +250,29 @@ def buildNAV(dstdir, title, chapters, chapternames):
                   "<nav xmlns:epub=\"http://www.idpf.org/2007/ops\" epub:type=\"toc\" id=\"toc\">\n",
                   "<ol>\n"])
     for chapter in chapters:
-        folder = chapter[0].replace(os.path.join(dstdir, 'OEBPS'), '').lstrip('/').lstrip('\\\\')
+        folder = chapter[0].replace(os.path.join(
+            dstdir, 'OEBPS'), '').lstrip('/').lstrip('\\\\')
         filename = getImageFileName(os.path.join(folder, chapter[1]))
         if options.chapters:
             title = chapternames[chapter[1]]
         elif os.path.basename(folder) != "Text":
             title = chapternames[os.path.basename(folder)]
-        f.write("<li><a href=\"" + filename[0].replace("\\", "/") + ".xhtml\">" + hescape(title) + "</a></li>\n")
+        f.write("<li><a href=\"" + filename[0].replace("\\",
+                "/") + ".xhtml\">" + hescape(title) + "</a></li>\n")
     f.writelines(["</ol>\n",
                   "</nav>\n",
                   "<nav epub:type=\"page-list\">\n",
                   "<ol>\n"])
     for chapter in chapters:
-        folder = chapter[0].replace(os.path.join(dstdir, 'OEBPS'), '').lstrip('/').lstrip('\\\\')
+        folder = chapter[0].replace(os.path.join(
+            dstdir, 'OEBPS'), '').lstrip('/').lstrip('\\\\')
         filename = getImageFileName(os.path.join(folder, chapter[1]))
         if options.chapters:
             title = chapternames[chapter[1]]
         elif os.path.basename(folder) != "Text":
             title = chapternames[os.path.basename(folder)]
-        f.write("<li><a href=\"" + filename[0].replace("\\", "/") + ".xhtml\">" + hescape(title) + "</a></li>\n")
+        f.write("<li><a href=\"" + filename[0].replace("\\",
+                "/") + ".xhtml\">" + hescape(title) + "</a></li>\n")
     f.write("</ol>\n</nav>\n</body>\n</html>")
     f.close()
 
@@ -281,7 +295,8 @@ def buildOPF(dstdir, title, filelist, cover=None):
                   "<dc:identifier id=\"BookID\">urn:uuid:", options.uuid, "</dc:identifier>\n",
                   "<dc:contributor id=\"contributor\">KindleComicConverter-" + __version__ + "</dc:contributor>\n"])
     if len(options.summary) > 0:
-        f.writelines(["<dc:description>", options.summary, "</dc:description>\n"])
+        f.writelines(
+            ["<dc:description>", options.summary, "</dc:description>\n"])
     for author in options.authors:
         f.writelines(["<dc:creator>", author, "</dc:creator>\n"])
     f.writelines(["<meta property=\"dcterms:modified\">" + strftime("%Y-%m-%dT%H:%M:%SZ", gmtime()) + "</meta>\n",
@@ -316,7 +331,8 @@ def buildOPF(dstdir, title, filelist, cover=None):
                   "<item id=\"nav\" href=\"nav.xhtml\" ",
                   "properties=\"nav\" media-type=\"application/xhtml+xml\"/>\n"])
     if cover is not None:
-        filename = getImageFileName(cover.replace(os.path.join(dstdir, 'OEBPS'), '').lstrip('/').lstrip('\\\\'))
+        filename = getImageFileName(cover.replace(os.path.join(
+            dstdir, 'OEBPS'), '').lstrip('/').lstrip('\\\\'))
         if '.png' == filename[1]:
             mt = 'image/png'
         else:
@@ -325,9 +341,11 @@ def buildOPF(dstdir, title, filelist, cover=None):
                 "\" properties=\"cover-image\"/>\n")
     reflist = []
     for path in filelist:
-        folder = path[0].replace(os.path.join(dstdir, 'OEBPS'), '').lstrip('/').lstrip('\\\\').replace("\\", "/")
+        folder = path[0].replace(os.path.join(dstdir, 'OEBPS'), '').lstrip(
+            '/').lstrip('\\\\').replace("\\", "/")
         filename = getImageFileName(path[1])
-        uniqueid = os.path.join(folder, filename[0]).replace('/', '_').replace('\\', '_')
+        uniqueid = os.path.join(folder, filename[0]).replace(
+            '/', '_').replace('\\', '_')
         reflist.append(uniqueid)
         f.write("<item id=\"page_" + str(uniqueid) + "\" href=\"" +
                 folder.replace('Images', 'Text') + "/" + filename[0] +
@@ -339,7 +357,6 @@ def buildOPF(dstdir, title, filelist, cover=None):
         f.write("<item id=\"img_" + str(uniqueid) + "\" href=\"" + folder + "/" + path[1] + "\" media-type=\"" +
                 mt + "\"/>\n")
     f.write("<item id=\"css\" href=\"Text/style.css\" media-type=\"text/css\"/>\n")
-
 
     def pageSpreadProperty(pageside):
         if options.iskindle:
@@ -407,7 +424,8 @@ def buildOPF(dstdir, title, filelist, cover=None):
     f.write("</spine>\n</package>\n")
     f.close()
     os.mkdir(os.path.join(dstdir, 'META-INF'))
-    f = open(os.path.join(dstdir, 'META-INF', 'container.xml'), 'w', encoding='UTF-8')
+    f = open(os.path.join(dstdir, 'META-INF',
+             'container.xml'), 'w', encoding='UTF-8')
     f.writelines(["<?xml version=\"1.0\"?>\n",
                   "<container version=\"1.0\" xmlns=\"urn:oasis:names:tc:opendocument:xmlns:container\">\n",
                   "<rootfiles>\n",
@@ -422,7 +440,8 @@ def buildEPUB(path, chapternames, tomenumber):
     chapterlist = []
     cover = None
     os.mkdir(os.path.join(path, 'OEBPS', 'Text'))
-    f = open(os.path.join(path, 'OEBPS', 'Text', 'style.css'), 'w', encoding='UTF-8')
+    f = open(os.path.join(path, 'OEBPS', 'Text',
+             'style.css'), 'w', encoding='UTF-8')
     f.writelines(["@page {\n",
                   "margin: 0;\n",
                   "}\n",
@@ -501,9 +520,11 @@ def buildEPUB(path, chapternames, tomenumber):
         chapter = False
         dirnames, filenames = walkSort(dirnames, filenames)
         for afile in filenames:
-            filelist.append(buildHTML(dirpath, afile, os.path.join(dirpath, afile)))
+            filelist.append(
+                buildHTML(dirpath, afile, os.path.join(dirpath, afile)))
             if not chapter:
-                chapterlist.append((dirpath.replace('Images', 'Text'), filelist[-1][1]))
+                chapterlist.append(
+                    (dirpath.replace('Images', 'Text'), filelist[-1][1]))
                 chapter = True
             if cover is None:
                 cover = os.path.join(os.path.join(path, 'OEBPS', 'Images'),
@@ -522,7 +543,8 @@ def buildEPUB(path, chapternames, tomenumber):
             if '-kcc-c' in filelist[pageid][1]:
                 pageid -= 1
             filename = filelist[pageid][1]
-            chapterlist.append((filelist[pageid][0].replace('Images', 'Text'), filename))
+            chapterlist.append(
+                (filelist[pageid][0].replace('Images', 'Text'), filename))
             chapternames[filename] = aChapter[1]
             globaldiff = pageid - (aChapter[0] + globaldiff)
     buildNCX(path, options.title, chapterlist, chapternames)
@@ -546,7 +568,8 @@ def imgDirectoryProcessing(path):
         GUI.progressBarTick.emit(str(pagenumber))
     if len(work) > 0:
         for i in work:
-            workerPool.apply_async(func=imgFileProcessing, args=(i, ), callback=imgFileProcessingTick)
+            workerPool.apply_async(func=imgFileProcessing, args=(
+                i, ), callback=imgFileProcessingTick)
         workerPool.close()
         workerPool.join()
         if GUI and not GUI.conversionAlive:
@@ -554,7 +577,8 @@ def imgDirectoryProcessing(path):
             raise UserWarning("Conversion interrupted.")
         if len(workerOutput) > 0:
             rmtree(os.path.join(path, '..', '..'), True)
-            raise RuntimeError("One of workers crashed. Cause: " + workerOutput[0][0], workerOutput[0][1])
+            raise RuntimeError("One of workers crashed. Cause: " +
+                               workerOutput[0][0], workerOutput[0][1])
         for file in options.imgOld:
             if os.path.isfile(file):
                 os.remove(file)
@@ -650,7 +674,8 @@ def getOutputFilename(srcpath, wantedname, ext, tomenumber):
         if wantedname.endswith(ext):
             filename = os.path.abspath(wantedname)
         elif os.path.isdir(srcpath):
-            filename = os.path.join(os.path.abspath(options.output), os.path.basename(srcpath) + ext)
+            filename = os.path.join(os.path.abspath(
+                options.output), os.path.basename(srcpath) + ext)
         else:
             filename = os.path.join(os.path.abspath(options.output),
                                     os.path.basename(os.path.splitext(srcpath)[0]) + ext)
@@ -659,7 +684,8 @@ def getOutputFilename(srcpath, wantedname, ext, tomenumber):
     else:
         if 'Ko' in options.profile and options.format == 'EPUB':
             path = srcpath.split(os.path.sep)
-            path[-1] = ''.join(e for e in path[-1].split('.')[0] if e.isalnum()) + tomenumber + ext
+            path[-1] = ''.join(e for e in path[-1].split('.')
+                               [0] if e.isalnum()) + tomenumber + ext
             if not path[-1].split('.')[0]:
                 path[-1] = 'KCCPlaceholder' + tomenumber + ext
             filename = os.path.sep.join(path)
@@ -800,7 +826,8 @@ def splitDirectory(path):
         for f in files:
             if f.endswith('.jpg') or f.endswith('.jpeg') or f.endswith('.png') or f.endswith('.gif') or \
                     f.endswith('.webp'):
-                newLevel = os.path.join(root, f).replace(os.path.join(path, 'OEBPS', 'Images'), '').count(os.sep)
+                newLevel = os.path.join(root, f).replace(
+                    os.path.join(path, 'OEBPS', 'Images'), '').count(os.sep)
                 if level != -1 and level != newLevel:
                     level = 0
                     break
@@ -842,7 +869,8 @@ def splitProcess(path, mode):
                 else:
                     currentSize += size
                 if path != currentTarget:
-                    move(os.path.join(root, name), os.path.join(currentTarget, name))
+                    move(os.path.join(root, name),
+                         os.path.join(currentTarget, name))
     else:
         firstTome = True
         for root, dirs, _ in walkLevel(path, 0):
@@ -850,7 +878,8 @@ def splitProcess(path, mode):
                 if not firstTome:
                     currentTarget, pathRoot = createNewTome()
                     output.append(pathRoot)
-                    move(os.path.join(root, name), os.path.join(currentTarget, name))
+                    move(os.path.join(root, name),
+                         os.path.join(currentTarget, name))
                 else:
                     firstTome = False
     return output
@@ -866,7 +895,8 @@ def detectCorruption(tmppath, orgpath):
                 if not alreadyProcessed and getImageFileName(name)[0].endswith('-kcc'):
                     alreadyProcessed = True
                 path = os.path.join(root, name)
-                pathOrg = orgpath + path.split('OEBPS' + os.path.sep + 'Images')[1]
+                pathOrg = orgpath + \
+                    path.split('OEBPS' + os.path.sep + 'Images')[1]
                 if os.path.getsize(path) == 0:
                     rmtree(os.path.join(tmppath, '..', '..'), True)
                     raise RuntimeError('Image file %s is corrupted.' % pathOrg)
@@ -881,23 +911,27 @@ def detectCorruption(tmppath, orgpath):
                 except Exception as err:
                     rmtree(os.path.join(tmppath, '..', '..'), True)
                     if 'decoder' in str(err) and 'not available' in str(err):
-                        raise RuntimeError('Pillow was compiled without JPG and/or PNG decoder.')
+                        raise RuntimeError(
+                            'Pillow was compiled without JPG and/or PNG decoder.')
                     else:
-                        raise RuntimeError('Image file %s is corrupted. Error: %s' % (pathOrg, str(err)))
+                        raise RuntimeError(
+                            'Image file %s is corrupted. Error: %s' % (pathOrg, str(err)))
             else:
                 os.remove(os.path.join(root, name))
     if alreadyProcessed:
         print("WARNING: Source files are probably created by KCC. The second conversion will decrease quality.")
         if GUI:
-            GUI.addMessage.emit('Source files are probably created by KCC. The second conversion will decrease quality.'
-                                , 'warning', False)
+            GUI.addMessage.emit(
+                'Source files are probably created by KCC. The second conversion will decrease quality.', 'warning', False)
             GUI.addMessage.emit('', '', False)
     if imageSmaller > imageNumber * 0.25 and not options.upscale and not options.stretch:
         print("WARNING: More than 25% of images are smaller than target device resolution. "
               "Consider enabling stretching or upscaling to improve readability.")
         if GUI:
-            GUI.addMessage.emit('More than 25% of images are smaller than target device resolution.', 'warning', False)
-            GUI.addMessage.emit('Consider enabling stretching or upscaling to improve readability.', 'warning', False)
+            GUI.addMessage.emit(
+                'More than 25% of images are smaller than target device resolution.', 'warning', False)
+            GUI.addMessage.emit(
+                'Consider enabling stretching or upscaling to improve readability.', 'warning', False)
             GUI.addMessage.emit('', '', False)
 
 
@@ -913,7 +947,8 @@ def slugify(value, isdir):
         value = slugifyExt(value, regex_pattern=r'[^-a-z0-9_\.]+').strip('.')
     else:
         value = slugifyExt(value).strip('.')
-    value = sub(r'0*([0-9]{4,})', r'\1', sub(r'([0-9]+)', r'0000\1', value, count=2))
+    value = sub(r'0*([0-9]{4,})', r'\1',
+                sub(r'([0-9]+)', r'0000\1', value, count=2))
     return value
 
 
@@ -925,7 +960,8 @@ def makeZIP(zipfilename, basedir, isepub=False):
     for dirpath, _, filenames in os.walk(basedir):
         for name in filenames:
             path = os.path.normpath(os.path.join(dirpath, name))
-            aPath = os.path.normpath(os.path.join(dirpath.replace(basedir, ''), name))
+            aPath = os.path.normpath(os.path.join(
+                dirpath.replace(basedir, ''), name))
             if os.path.isfile(path):
                 zipOutput.write(path, aPath)
     zipOutput.close()
@@ -933,7 +969,8 @@ def makeZIP(zipfilename, basedir, isepub=False):
 
 
 def makeParser():
-    psr = OptionParser(usage="Usage: kcc-c2e [options] comic_file|comic_folder", add_help_option=False)
+    psr = OptionParser(
+        usage="Usage: kcc-c2e [options] comic_file|comic_folder", add_help_option=False)
 
     mainOptions = OptionGroup(psr, "MAIN")
     processingOptions = OptionGroup(psr, "PROCESSING")
@@ -1029,16 +1066,14 @@ def checkOptions(options):
     options.kfx = False
     options.supportSyntheticSpread = False
     if options.format == 'Auto':
-        if options.profile in ['K1', 'K2', 'K34', 'K578', 'KPW', 'KPW5', 'KV', 'KO', 'K11', 'KS']:
+        if options.profile in ['K1', 'K2', 'K34', 'K578', 'KPW', 'KPW5', 'KV', 'KO', 'K11', 'KS', 'KDX', 'OTHER']:
             options.format = 'MOBI'
-        elif options.profile in ['OTHER', 'KoMT', 'KoG', 'KoGHD', 'KoA', 'KoAHD', 'KoAH2O', 'KoAO',
+        elif options.profile in ['KoMT', 'KoG', 'KoGHD', 'KoA', 'KoAHD', 'KoAH2O', 'KoAO',
                                  'KoN', 'KoC', 'KoL', 'KoF', 'KoS', 'KoE']:
             options.format = 'EPUB'
-        elif options.profile in ['KDX']:
-            options.format = 'CBZ'
-    if options.profile in ['K1', 'K2', 'K34', 'K578', 'KPW', 'KPW5', 'KV', 'KO', 'K11', 'KS']:
+    if options.profile in ['K1', 'K2', 'K34', 'K578', 'KPW', 'KPW5', 'KV', 'KO', 'K11', 'KS', 'KDX', 'OTHER']:
         options.iskindle = True
-    elif options.profile in ['OTHER', 'KoMT', 'KoG', 'KoGHD', 'KoA', 'KoAHD', 'KoAH2O', 'KoAO', 'KoN', 'KoC', 'KoL', 'KoF', 'KoS', 'KoE']:
+    elif options.profile in ['KoMT', 'KoG', 'KoGHD', 'KoA', 'KoAHD', 'KoAH2O', 'KoAO', 'KoN', 'KoC', 'KoL', 'KoF', 'KoS', 'KoE']:
         options.isKobo = True
     # Other Kobo devices probably support synthetic spreads as well, but
     # they haven't been tested.
@@ -1055,6 +1090,9 @@ def checkOptions(options):
     if options.profile == 'K1' or options.profile == 'K2' or options.profile == 'K34' or options.profile == 'KDX':
         options.panelview = False
         options.hq = False
+    # Disable Panel View for kindle scribe and Other.
+    if options.profile == 'KS' or 'OTHER' in options.profile:
+        options.panelview = False
     # Webtoon mode mandatory options
     if options.webtoon:
         options.panelview = False
@@ -1062,9 +1100,6 @@ def checkOptions(options):
         options.upscale = True
         options.hq = False
     # Disable all Kindle features for other e-readers
-    if options.profile == 'OTHER':
-        options.panelview = False
-        options.hq = False
     if 'Ko' in options.profile:
         options.panelview = False
         options.hq = False
@@ -1096,13 +1131,15 @@ def checkTools(source):
     source = source.upper()
     if source.endswith('.CB7') or source.endswith('.7Z') or source.endswith('.RAR') or source.endswith('.CBR') or \
             source.endswith('.ZIP') or source.endswith('.CBZ'):
-        process = Popen('7z', stdout=PIPE, stderr=STDOUT, stdin=PIPE, shell=True)
+        process = Popen('7z', stdout=PIPE, stderr=STDOUT,
+                        stdin=PIPE, shell=True)
         process.communicate()
         if process.returncode != 0 and process.returncode != 7:
             print('ERROR: 7z is missing!')
             exit(1)
     if options.format == 'MOBI':
-        kindleGenExitCode = Popen('kindlegen -locale en', stdout=PIPE, stderr=STDOUT, stdin=PIPE, shell=True)
+        kindleGenExitCode = Popen(
+            'kindlegen -locale en', stdout=PIPE, stderr=STDOUT, stdin=PIPE, shell=True)
         kindleGenExitCode.communicate()
         if kindleGenExitCode.returncode != 0:
             print('ERROR: KindleGen is missing!')
@@ -1174,24 +1211,31 @@ def makeBook(source, qtgui=None):
         options.uuid = str(uuid4())
         if len(tomes) > 9:
             tomeNumber += 1
-            options.title = options.baseTitle + ' [' + str(tomeNumber).zfill(2) + '/' + str(len(tomes)).zfill(2) + ']'
+            options.title = options.baseTitle + \
+                ' [' + str(tomeNumber).zfill(2) + '/' + \
+                str(len(tomes)).zfill(2) + ']'
         elif len(tomes) > 1:
             tomeNumber += 1
-            options.title = options.baseTitle + ' [' + str(tomeNumber) + '/' + str(len(tomes)) + ']'
+            options.title = options.baseTitle + \
+                ' [' + str(tomeNumber) + '/' + str(len(tomes)) + ']'
         if options.format == 'CBZ':
             print("Creating CBZ file...")
             if len(tomes) > 1:
-                filepath.append(getOutputFilename(source, options.output, '.cbz', ' ' + str(tomeNumber)))
+                filepath.append(getOutputFilename(
+                    source, options.output, '.cbz', ' ' + str(tomeNumber)))
             else:
-                filepath.append(getOutputFilename(source, options.output, '.cbz', ''))
+                filepath.append(getOutputFilename(
+                    source, options.output, '.cbz', ''))
             makeZIP(tome + '_comic', os.path.join(tome, "OEBPS", "Images"))
         else:
             print("Creating EPUB file...")
             buildEPUB(tome, chapterNames, tomeNumber)
             if len(tomes) > 1:
-                filepath.append(getOutputFilename(source, options.output, '.epub', ' ' + str(tomeNumber)))
+                filepath.append(getOutputFilename(
+                    source, options.output, '.epub', ' ' + str(tomeNumber)))
             else:
-                filepath.append(getOutputFilename(source, options.output, '.epub', ''))
+                filepath.append(getOutputFilename(
+                    source, options.output, '.epub', ''))
             makeZIP(tome + '_comic', tome, True)
         copyfile(tome + '_comic.zip', filepath[-1])
         try:
@@ -1224,7 +1268,8 @@ def makeBook(source, qtgui=None):
             else:
                 os.remove(i.replace('.epub', '.mobi') + '_toclean')
             if k.path and k.coverSupport:
-                options.covers[filepath.index(i)][0].saveToKindle(k, options.covers[filepath.index(i)][1])
+                options.covers[filepath.index(i)][0].saveToKindle(
+                    k, options.covers[filepath.index(i)][1])
     return filepath
 
 
@@ -1234,7 +1279,8 @@ def makeMOBIFix(item, uuid):
     mobiPath = item.replace('.epub', '.mobi')
     move(mobiPath, mobiPath + '_toclean')
     try:
-        dualmetafix.DualMobiMetaFix(mobiPath + '_toclean', mobiPath, bytes(uuid, 'UTF-8'))
+        dualmetafix.DualMobiMetaFix(
+            mobiPath + '_toclean', mobiPath, bytes(uuid, 'UTF-8'))
         return [True]
     except Exception as err:
         return [False, format(err)]
@@ -1298,7 +1344,8 @@ def makeMOBI(work, qtgui=None):
         threadNumber = None
     makeMOBIWorkerPool = Pool(threadNumber, maxtasksperchild=10)
     for i in work:
-        makeMOBIWorkerPool.apply_async(func=makeMOBIWorker, args=(i, ), callback=makeMOBIWorkerTick)
+        makeMOBIWorkerPool.apply_async(
+            func=makeMOBIWorker, args=(i, ), callback=makeMOBIWorkerTick)
     makeMOBIWorkerPool.close()
     makeMOBIWorkerPool.join()
     return makeMOBIWorkerOutput
